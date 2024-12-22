@@ -10,3 +10,10 @@ services:
     ports:
       - 3000:3000
     command: bash -c "yarn && yarn start:dev auth"
+
+
+  nats:
+    image: nats
+    ports:
+      - "8222:8222"
+    command: "--cluster_name NATS --cluster nats://0.0.0.0:6222 --http_port 8222"
