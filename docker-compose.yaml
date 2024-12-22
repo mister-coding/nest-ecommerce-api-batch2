@@ -1,0 +1,12 @@
+services:
+
+  auth:
+    image: node:22
+    working_dir: /app
+    volumes:
+      - ./:/app
+    env_file:
+      - .env
+    ports:
+      - 3000:3000
+    command: bash -c "yarn && yarn start:dev auth"
