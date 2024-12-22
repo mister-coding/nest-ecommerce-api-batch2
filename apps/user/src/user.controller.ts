@@ -14,10 +14,11 @@ export class UserController {
 
   //grpcurl -plaintext -d '{ \"email\": \"abc@gmail.com\" }' localhost:50053 user.UserService.FindByEmail
   @GrpcMethod('UserService','FindByEmail')
-  async findByEmail(data:any,metadata:Metadata,call:ServerUnaryCall<any,any>){
+  async findByEmail(data:any){
+    console.log('email',data);
     return{
       name:"John",
-      email:"John email"
+      email:data.email
     }
   }
 }
