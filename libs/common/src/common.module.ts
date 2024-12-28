@@ -6,10 +6,17 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
 import { ResponseInterceptor } from './interceptors/response/response.interceptor';
 import { ConfigModule } from '@nestjs/config';
 import setryConfig from 'config/sentry';
+import awsConfig from 'config/aws.config';
 
 @Module({
-  imports:[
-    ConfigModule.forRoot()
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [
+        setryConfig,
+        awsConfig
+      ]
+    })
   ],
   providers: [
     CommonService,
