@@ -8,5 +8,4 @@ export class UploadImageDto {
   media_type?: string;
   size?: number;
   image: any;
-  
 }

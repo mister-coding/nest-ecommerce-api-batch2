@@ -16,7 +16,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
-    const status = exception.getStatus();
+    const status = exception.getStatus()??500;
 
     const { message }: any = exception.getResponse();
 
@@ -28,6 +28,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       path: request.url,
       message: message ?? exception.message,
     });
+    
   }
 
 }

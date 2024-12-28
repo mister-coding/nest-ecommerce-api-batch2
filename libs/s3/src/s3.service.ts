@@ -19,6 +19,7 @@ export class S3Service {
     }
   
     async upload(file: any, name: string) {
+      
       return await this.uploadS3(
         file,
         this.configService.get('aws.s3.bucketName'),
