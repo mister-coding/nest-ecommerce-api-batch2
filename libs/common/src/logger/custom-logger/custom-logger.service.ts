@@ -1,27 +1,39 @@
 import { ConsoleLogger, Injectable } from '@nestjs/common';
+import * as Sentry from '@sentry/nestjs';
 
 @Injectable()
-export class CustomLoggerService  extends ConsoleLogger{
+export class CustomLoggerService extends ConsoleLogger {
 
 
     log(message: any, ...optionalParams: any[]): void {
-        super.log(message,...optionalParams)
+        super.log(message, ...optionalParams);
+        Sentry.withScope((scope) => {
+            scope.setLevel('log');
+            Sentry.captureMessage(message, 'log');
+        });
     }
 
     error(message: any, ...optionalParams: any[]): void {
-        console.log("Error from custom logger service");
-        super.error(message,...optionalParams)
+        super.error(message, ...optionalParams)
+        Sentry.withScope((scope) => {
+            scope.setLevel('error');
+            Sentry.captureMessage(message, 'error');
+          });
     }
 
     warn(message: any, ...optionalParams: any[]): void {
-        super.warn(message,...optionalParams)
+        super.warn(message, ...optionalParams)
     }
 
     debug(message: any, ...optionalParams: any[]): void {
-        super.debug(message,...optionalParams)
+        super.debug(message, ...optionalParams)
+        Sentry.withScope((scope) => {
+            scope.setLevel('debug');
+            Sentry.captureMessage(message, 'debug');
+        });
     }
 
     fatal(message: any, ...optionalParams: any[]): void {
-        super.fatal(message,...optionalParams)
+        super.fatal(message, ...optionalParams)
     }
 }
