@@ -4,7 +4,7 @@ import { UserService } from './user.service';
 import { CommonModule } from '@app/common';
 
 @Module({
-  imports: [CommonModule],
+  imports: [CommonModule.withSentry()],
   controllers: [UserController],
   providers: [UserService],
 })
