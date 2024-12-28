@@ -29,6 +29,7 @@ export class CustomLoggerService extends ConsoleLogger {
         super.debug(message, ...optionalParams)
         Sentry.withScope((scope) => {
             scope.setLevel('debug');
+            scope.setExtras({name:"john"})
             Sentry.captureMessage(message, 'debug');
         });
     }
