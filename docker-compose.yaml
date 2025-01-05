@@ -1,12 +1,56 @@
 services:
 
-  auth:
-    image: node:22
-    working_dir: /app
+  postgres:
+    image: postgres:latest
+    container_name: "live.ecommerce"
     volumes:
-      - ./:/app
-    env_file:
-      - .env
+      - pgdata_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: youruser
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: yourdbname
     ports:
-      - 3000:3000
-    command: bash -c "yarn && yarn start:dev auth"
+      - "5432:5432"
+
+  mongo1:
+    image: mongo:latest
+    container_name: mongo1
+    ports:
+      - "27017:27017"
+    command: --replSet myReplicaSet --bind_ip_all
+    volumes:
+      - mongo1_data:/data/db
+
+  mongo2:
+    image: mongo:latest
+    container_name: mongo2
+    ports:
+      - "27018:27017"
+    command: --replSet myReplicaSet --bind_ip_all
+    volumes:
+      - mongo2_data:/data/db
+
+  mongo3:
+    image: mongo:latest
+    container_name: mongo3
+    ports:
+      - "27019:27017"
+    command: --replSet myReplicaSet --bind_ip_all
+    volumes:
+      - mongo3_data:/data/db
+
+  # mongodb:
+  #   image: mongo:latest
+  #   ports:
+  #     - "27017:27017"
+  #   # environment:
+  #   #   MONGO_INITDB_ROOT_USERNAME: root
+  #   #   MONGO_INITDB_ROOT_PASSWORD: examplepassword
+  #   volumes:
+  #     - ./mongo-data:/data/db
+
+volumes:
+  pgdata_data:
+  mongo1_data:
+  mongo2_data:
+  mongo3_data:

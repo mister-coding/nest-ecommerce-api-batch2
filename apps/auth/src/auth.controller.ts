@@ -30,8 +30,27 @@ export class AuthController implements OnModuleInit {
     const data = await this.userServices.FindByEmail({ email: 'abc@gmail.com' });
     // const testData = data.toPromise()
     const user = await firstValueFrom(data);
-    return {data:user};
+    return { data: user };
   }
-  
+
+  @Get('test-user')
+  async getUser() {
+    const data = await this.authService.testGetUser();
+    return { data }
+  }
+
+  @Get('test-product')
+  async getProduct() {
+    const data = await this.authService.testGetProduct();
+    return { data }
+  }
+
+  @Get('test-create-media')
+  async createMedia() {
+    const data = await this.authService.testCreateMedia();
+    return { data }
+  }
+
+
 
 }
