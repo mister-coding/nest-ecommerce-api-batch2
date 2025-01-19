@@ -81,11 +81,14 @@
       "<rootDir>/libs/"
     ],
     "moduleNameMapper": {
-      "^@app/repositories(|/.*)$": "<rootDir>/libs/repositories/src/$1",
       "^@app/cache(|/.*)$": "<rootDir>/libs/cache/src/$1",
       "^@app/s3(|/.*)$": "<rootDir>/libs/s3/src/$1",
       "^@app/common(|/.*)$": "<rootDir>/libs/common/src/$1",
-      "^@app/prisma(|/.*)$": "<rootDir>/libs/prisma/src/$1"
+      "^@app/prisma(|/.*)$": "<rootDir>/libs/prisma/src/$1",
+      "^@app/repository-product(|/.*)$": "<rootDir>/libs/repository-product/src/$1",
+      "^@app/repository-user(|/.*)$": "<rootDir>/libs/repository-user/src/$1",
+      "^@app/repository-media(|/.*)$": "<rootDir>/libs/repository-media/src/$1",
+      "^@app/repository-report(|/.*)$": "<rootDir>/libs/repository-report/src/$1"
     }
   }
 }

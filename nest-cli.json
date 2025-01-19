@@ -64,15 +64,6 @@
         "tsConfigPath": "apps/payment/tsconfig.app.json"
       }
     },
-    "repositories": {
-      "type": "library",
-      "root": "libs/repositories",
-      "entryFile": "index",
-      "sourceRoot": "libs/repositories/src",
-      "compilerOptions": {
-        "tsConfigPath": "libs/repositories/tsconfig.lib.json"
-      }
-    },
     "cache": {
       "type": "library",
       "root": "libs/cache",
@@ -107,6 +98,42 @@
       "sourceRoot": "libs/prisma/src",
       "compilerOptions": {
         "tsConfigPath": "libs/prisma/tsconfig.lib.json"
+      }
+    },
+    "repository-product": {
+      "type": "library",
+      "root": "libs/repository-product",
+      "entryFile": "index",
+      "sourceRoot": "libs/repository-product/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/repository-product/tsconfig.lib.json"
+      }
+    },
+    "repository-user": {
+      "type": "library",
+      "root": "libs/repository-user",
+      "entryFile": "index",
+      "sourceRoot": "libs/repository-user/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/repository-user/tsconfig.lib.json"
+      }
+    },
+    "repository-media": {
+      "type": "library",
+      "root": "libs/repository-media",
+      "entryFile": "index",
+      "sourceRoot": "libs/repository-media/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/repository-media/tsconfig.lib.json"
+      }
+    },
+    "repository-report": {
+      "type": "library",
+      "root": "libs/repository-report",
+      "entryFile": "index",
+      "sourceRoot": "libs/repository-report/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/repository-report/tsconfig.lib.json"
       }
     }
   }

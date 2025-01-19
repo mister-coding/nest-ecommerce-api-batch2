@@ -47,6 +47,42 @@
       ],
       "@app/prisma/*": [
         "libs/prisma/src/*"
+      ],
+      "@app/repositories/product-repository": [
+        "libs/repositories/product-repository/src"
+      ],
+      "@app/repositories/product-repository/*": [
+        "libs/repositories/product-repository/src/*"
+      ],
+      "@app/repository/product": [
+        "libs/repository/product/src"
+      ],
+      "@app/repository/product/*": [
+        "libs/repository/product/src/*"
+      ],
+      "@app/repository-product": [
+        "libs/repository-product/src"
+      ],
+      "@app/repository-product/*": [
+        "libs/repository-product/src/*"
+      ],
+      "@app/repository-user": [
+        "libs/repository-user/src"
+      ],
+      "@app/repository-user/*": [
+        "libs/repository-user/src/*"
+      ],
+      "@app/repository-media": [
+        "libs/repository-media/src"
+      ],
+      "@app/repository-media/*": [
+        "libs/repository-media/src/*"
+      ],
+      "@app/repository-report": [
+        "libs/repository-report/src"
+      ],
+      "@app/repository-report/*": [
+        "libs/repository-report/src/*"
       ]
     }
   }

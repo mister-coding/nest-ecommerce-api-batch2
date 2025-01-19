@@ -23,3 +23,11 @@ model user {
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 }
+
+model forgot_password {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email      String   @unique
+  token      String?
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+}

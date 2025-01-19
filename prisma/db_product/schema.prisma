@@ -15,11 +15,96 @@ datasource db {
 }
 
 model product {
-  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id          String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name        String
-  price       Int      @default(0)
+  price       Int          @default(0)
   description String
   image       String?
-  created_at  DateTime @default(now())
-  updated_at  DateTime @default(now()) @updatedAt
+  image_id    String?
+  created_at  DateTime     @default(now())
+  updated_at  DateTime     @default(now()) @updatedAt
+  order_item  order_item[]
+  stock       stock[]
+}
+
+model stock {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  product_id String   @db.Uuid
+  stock      Int      @default(0)
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+  product    product  @relation(fields: [product_id], references: [id])
+}
+
+model stock_history {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  stock_id   String   @db.Uuid
+  amount     Int      @default(0)
+  stock_type String?
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+}
+
+enum order_status {
+  processing
+  pending
+  cancel
+  return
+}
+
+model order {
+  id           String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id      String       @db.Uuid
+  order_status order_status @default(pending)
+  created_at   DateTime     @default(now())
+  updated_at   DateTime     @default(now()) @updatedAt
+  order_item   order_item[]
+  shipping     shipping[]
+  payment      payment[]
+}
+
+model order_item {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  order_id   String   @db.Uuid
+  product_id String   @db.Uuid
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+  product    product  @relation(fields: [product_id], references: [id])
+  order      order    @relation(fields: [order_id], references: [id])
+}
+
+enum shipping_status {
+  processing
+  pending
+  done
+}
+
+model shipping {
+  id              String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  order_id        String          @db.Uuid
+  shipping_status shipping_status @default(pending)
+  receive_name    String
+  receive_email   String
+  receive_phone   String
+  receive_address String
+  created_at      DateTime        @default(now())
+  updated_at      DateTime        @default(now()) @updatedAt
+  order           order           @relation(fields: [order_id], references: [id])
+}
+
+enum payment_status {
+  pending
+  failed
+  expired
+  success
+}
+
+model payment {
+  id             String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  order_id       String         @db.Uuid
+  payment_status payment_status @default(pending)
+  amount         Int            @default(0)
+  created_at     DateTime       @default(now())
+  updated_at     DateTime       @default(now()) @updatedAt
+  order          order          @relation(fields: [order_id], references: [id])
 }

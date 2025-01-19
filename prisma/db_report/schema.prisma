@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../node_modules/@db_prisma/db_report"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL_REPORT")
+}
+
+type report_user {
+  id    String
+  name  String
+  email String
+}
+
+type report_shipping {
+  id              String
+  shipping_status String
+  receive_name    String
+  receive_email   String
+  receive_phone   String
+  receive_address String
+}
+
+type report_payment {
+  id             String
+  amount         Int
+  payment_status String
+}
+
+model report_order {
+  id           String         @id @default(auto()) @map("_id") @db.ObjectId
+  order_id     String
+  order_status String
+  order_at     DateTime?
+  amount       Int            @default(0)
+  user         report_user
+  shipping     report_payment
+  payment      report_payment
+  created_at   DateTime       @default(now())
+  updated_at   DateTime       @default(now()) @updatedAt
+}
