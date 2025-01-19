@@ -7,7 +7,7 @@ import { Injectable } from '@nestjs/common';
 export class AuthService {
 
   constructor(
-    private dbUser: PrismaDBUserService,
+    // private dbUser: PrismaDBUserService,
     private dbProduct: PrismaDBProductService,
     private dbMedia: PrismaDBMediaService
   ) { }
@@ -17,7 +17,7 @@ export class AuthService {
   }
 
   async testGetUser() {
-    return await this.dbUser.user.findMany();
+    // return await this.dbUser.user.findMany();
   }
 
   async testGetProduct() {
