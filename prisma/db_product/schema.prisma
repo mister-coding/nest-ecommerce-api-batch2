@@ -23,6 +23,7 @@ model product {
   image_id    String?
   created_at  DateTime     @default(now())
   updated_at  DateTime     @default(now()) @updatedAt
+  deleted_at  DateTime?
   order_item  order_item[]
   stock       stock[]
 }

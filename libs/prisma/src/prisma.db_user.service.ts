@@ -5,6 +5,7 @@ import { PrismaClient } from '@db_prisma/db_user';
 @Injectable()
 export class PrismaDBUserService extends PrismaClient implements OnModuleInit {
   async onModuleInit() {
+    console.log("Start Connect DB User");
     await this.$connect();
   }
 }
