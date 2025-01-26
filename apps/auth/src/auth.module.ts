@@ -6,13 +6,15 @@ import { CommonModule } from '@app/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { join } from 'path';
 import { cwd } from 'process';
-import { PrismaModule } from '@app/prisma';
+import { RepositoryUserModule } from '@app/repository-user';
+// import { PrismaModule } from '@app/prisma';
 
 @Module({
   imports: [
     S3Module,
     CommonModule,
-    PrismaModule,
+    // PrismaModule,
+    RepositoryUserModule,
     ClientsModule.register([
       {
         name: 'USER_PACKAGE',

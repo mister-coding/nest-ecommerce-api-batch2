@@ -1,6 +1,7 @@
-import { PrismaDBMediaService } from '@app/prisma/prisma.db_media.service';
-import { PrismaDBProductService } from '@app/prisma/prisma.db_product.service';
-import { PrismaDBUserService } from '@app/prisma/prisma.db_user.service';
+// import { PrismaDBMediaService } from '@app/prisma/prisma.db_media.service';
+// import { PrismaDBProductService } from '@app/prisma/prisma.db_product.service';
+// import { PrismaDBUserService } from '@app/prisma/prisma.db_user.service';
+import { UserRepository } from '@app/repository-user/classes/user.repository';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
@@ -8,8 +9,9 @@ export class AuthService {
 
   constructor(
     // private dbUser: PrismaDBUserService,
-    private dbProduct: PrismaDBProductService,
-    private dbMedia: PrismaDBMediaService
+    // private dbProduct: PrismaDBProductService,
+    // private dbMedia: PrismaDBMediaService
+    private userRepo: UserRepository
   ) { }
 
   getHello(): string {
@@ -18,19 +20,20 @@ export class AuthService {
 
   async testGetUser() {
     // return await this.dbUser.user.findMany();
+    return await this.userRepo.findAll()
   }
 
   async testGetProduct() {
-    return await this.dbProduct.product.findMany();
+    // return await this.dbProduct.product.findMany();
   }
 
   async testCreateMedia() {
-    return await this.dbMedia.media.create({
-      data: {
-        name: "Test",
-        path: "Test"
-      }
-    });
+    // return await this.dbMedia.media.create({
+    //   data: {
+    //     name: "Test",
+    //     path: "Test"
+    //   }
+    // });
   }
 
 }
